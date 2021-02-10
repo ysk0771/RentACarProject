@@ -1,18 +1,18 @@
-﻿using Core.Entities;
+﻿using Core;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities
+namespace Entities.DTOs
 {
-    public class Cars:IEntity
+  public  class CarDetailDTO:IDto
     {
         public int Id { get; set; }
         public int BrandId { get; set; }
-        public int ColorId { get; set; }
         public string ModelYear { get; set; }
         public decimal DailyPrice { get; set; }
         public string Descriptions { get; set; }
 
+  
     }
 }

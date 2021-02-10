@@ -1,10 +1,11 @@
-﻿using Entities.Abstract;
+﻿
+using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace DataAccesses.Abstract
+namespace Core.DataAccesses
 { //generic constraint
     public interface IEntityRepository<T> where T : class, IEntity,new() //T tipinin IEntity referans stiplerinde biri olabilir şartı kotduk
     {    //new() ile veirlen tipin new'lenebilecek bir tür vermemiz gerekiyor
