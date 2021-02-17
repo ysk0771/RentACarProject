@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccesses.Abstract;
 using Entities;
 using Entities.DTOs;
@@ -17,26 +19,43 @@ namespace Business.Concrete
             _CarDal = carDal;
         }
 
-        public List<Cars> GetAll()
+        public IResult Add(Cars car)
+        {
+            //bussiness codes
+            if (car.Descriptions.Length<2)
+            {
+                return new ErrorResult(Messages.ProductNameInvalid);
+            }
+
+            _CarDal.Add(car);
+
+            return new SuccessesResult(Messages.ProductAdded);
+        }
+
+        public IDataResult<List<Cars>> GetAll()
         {
             //iş kodları
-            return _CarDal.GetAll();
+            if (DateTime.Now.Hour==3)
+            {
+              return new ErrorDataResult<List<Cars>>(Messages.MaintenainceTime);
+            }
+            return new SuccessesDataResult<List<Cars>>(_CarDal.GetAll(),Messages.ProductListed);
 
         }
 
-        public List<Cars> GetAllByColorId(int id)
+        public IDataResult<List<Cars>> GetAllByColorId(int id)
         {
-            return _CarDal.GetAll(p=>p.ColorId==id);
+            return new SuccessesDataResult<List<Cars>>(_CarDal.GetAll(p=>p.ColorId==id));
         }
 
-        public List<Cars> GetByDailyPrice(decimal min, decimal max)
+        public IDataResult<List<Cars>> GetByDailyPrice(decimal min, decimal max)
         {
-            return _CarDal.GetAll(p => p.DailyPrice >= min && p.DailyPrice <= max);
+            return new SuccessesDataResult<List<Cars>>(_CarDal.GetAll(p => p.DailyPrice >= min && p.DailyPrice <= max));
         }
 
-        public List<CarDetailDTO> GetCarDetails()
+        public IDataResult<List<CarDetailDTO>> GetCarDetails()
         {
-            return _CarDal.GetCarDetails();
+            return new SuccessesDataResult<List<CarDetailDTO>>(_CarDal.GetCarDetails());
         }
     }
 }
