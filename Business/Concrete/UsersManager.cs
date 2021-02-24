@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
-   public class BrandManager:IBrandDal
+   public class UsersManager:IUsersService
     {
 
     }

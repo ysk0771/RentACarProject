@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Business.Abstract
 {
- public  interface IBrandDal
+   public interface ICustomersService
     {
 
     }
