@@ -50,12 +50,18 @@ namespace Business.Concrete
 
         public IDataResult<List<Cars>> GetByDailyPrice(decimal min, decimal max)
         {
-            return new SuccessesDataResult<List<Cars>>(_CarDal.GetAll(p => p.DailyPrice >= min && p.DailyPrice <= max));
+            return new SuccessesDataResult<List<Cars>>(_CarDal.GetAll(p => p.DailyPrice>= min && p.DailyPrice <= max));
+        }
+
+        public IDataResult<Cars> GetById(int id)
+        {
+            return new SuccessesDataResult<Cars>(_CarDal.Get(p=>p.Id==id));
         }
 
         public IDataResult<List<CarDetailDTO>> GetCarDetails()
         {
             return new SuccessesDataResult<List<CarDetailDTO>>(_CarDal.GetCarDetails());
         }
+        
     }
 }
