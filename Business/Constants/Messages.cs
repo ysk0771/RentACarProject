@@ -15,5 +15,8 @@ namespace Business.Constants
         public static string ProductListed = "Ürünler listelendi";
 
         public static string ProductUpdate = "Ürün güncellendi";
+        public static string CarsColorIdError="Bir Üründeki limit sayısını açtınız";
+
+        public static string ColorLimitExceded = "Renk tür sınırı dolmuştur";
     }
 }

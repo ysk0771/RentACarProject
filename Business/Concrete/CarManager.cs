@@ -3,6 +3,7 @@ using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspect.Autofac.Validation;
 using Core.CrossCuttingConcern.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccesses.Abstract;
 using Entities;
@@ -17,29 +18,39 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _CarDal;
+        IColorService _colorService;
+        
 
-        public CarManager(ICarDal carDal)
+        public CarManager(ICarDal carDal,IColorService colors)
         {
             _CarDal = carDal;
+            _colorService = colors;
         }
 
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Cars car)
         {
-            //bussiness codes--iş kuralları
-            //validation--doğrulma--
-
             
+            //bussiness codes--iş kuralları
+            //eğerm mevcut renk sayısı 15'i geçerse ürün eklenemez
+            IResult result = BusinessRules.Run(CheckIfCarCountOfColorCorrect(car.ColorId),
+               CheckIfColorsLimitExceded());
+            if (result != null)
+            {
+                return result;
+            }
 
             _CarDal.Add(car);
-
             return new SuccessesResult(Messages.ProductAdded);
+
+
+
         }
 
         public IDataResult<List<Cars>> GetAll()
         {
             //iş kodları
-            if (DateTime.Now.Hour == 3)
+            if (DateTime.Now.Hour == 6)
             {
                 return new ErrorDataResult<List<Cars>>(Messages.MaintenainceTime);
             }
@@ -67,5 +78,31 @@ namespace Business.Concrete
             return new SuccessesDataResult<List<CarDetailDTO>>(_CarDal.GetCarDetails());
         }
 
+        [ValidationAspect(typeof(CarValidator))]
+        public IResult Update(Cars car)
+        {
+            _CarDal.Update(car);
+            return new SuccessesResult();
+        }
+
+        private IResult CheckIfCarCountOfColorCorrect(int colorId)
+        {
+            var result = _CarDal.GetAll(p => p.ColorId == colorId).Count;
+            if (result >= 10)
+            {
+                return new ErrorResult(Messages.CarsColorIdError);
+            }
+            return new SuccessesResult();
+        }
+        private IResult CheckIfColorsLimitExceded()
+        {
+
+            var result = _colorService.GetAll();
+            if (result.Data.Count>15)
+            {
+                return new ErrorResult(Messages.ColorLimitExceded);
+            }
+            return new SuccessesResult();
+        }
     }
 }
