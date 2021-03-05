@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Entities;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,11 +12,11 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarsController : ControllerBase
+    public class CarController : ControllerBase
     {
         ICarService _carService;
 
-        public CarsController(ICarService carService)
+        public CarController(ICarService carService)
         {
             _carService = carService;
         }
@@ -31,7 +32,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Cars cars)
+        public IActionResult Add(Car cars)
         {
             var result = _carService.Add(cars);
             if (result.Success)

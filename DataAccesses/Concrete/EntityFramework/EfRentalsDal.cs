@@ -1,16 +1,13 @@
 ﻿using Core.DataAccesses.EntityFramework;
 using DataAccesses.Abstract;
-using Entities;
 using Entities.Concrete;
 using Entities.DTOs;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
 namespace DataAccesses.Concrete.EntityFramework
 {
-    public class EfRentalsDal : EfEntityRepositoryBase<Rentals, CarRentContext>, IRentalsDal
+    public class EfRentalsDal : EfEntityRepositoryBase<Rental, CarRentContext>, IRentalsDal
     {
         public List<RentalsDetailDTO> GetRentalsDetails()
         {

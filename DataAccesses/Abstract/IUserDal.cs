@@ -1,13 +1,13 @@
 ﻿using Core.DataAccesses;
-using Entities.Concrete;
+using Core.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DataAccesses.Abstract
 {
-   public interface IUsersDal:IEntityRepository<Users>
+    public interface IUserDal : IEntityRepository<User>
     {
-
+        List<OperationClaim> GetClaims(User user);
     }
 }

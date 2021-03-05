@@ -9,20 +9,20 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            ColorManager colorManager = new ColorManager(new EfColorDal());
+            //ColorManager colorManager = new ColorManager(new EfColorDal());
 
-            var result = colorManager.GetAll();
-            if (result.Success==true)
-            {
-                foreach (var car in result.Data)
-                {
-                    Console.WriteLine(car.ColorName+ " /" + car.Id );
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
+            //var result = colorManager.GetAll();
+            //if (result.Success==true)
+            //{
+            //    foreach (var car in result.Data)
+            //    {
+            //        Console.WriteLine(car.ColorName+ " /" + car.Id );
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
         }
     }
 }

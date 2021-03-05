@@ -1,18 +1,13 @@
 ﻿using Core.DataAccesses.EntityFramework;
 using DataAccesses.Abstract;
-using Entities;
+using Entities.Concrete;
 using Entities.DTOs;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Linq;
 
 namespace DataAccesses.Concrete.EntityFramework
 {
-    public class EfCarDal : EfEntityRepositoryBase<Cars, CarRentContext>, ICarDal
+    public class EfCarDal : EfEntityRepositoryBase<Car, CarRentContext>, ICarDal
     {
         public List<CarDetailDTO> GetCarDetails()
         {

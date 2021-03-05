@@ -1,21 +1,19 @@
 ﻿using Core.Utilities.Results;
-using Entities;
+using Entities.Concrete;
 using Entities.DTOs;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Abstract
 {
-  public  interface ICarService
+    public  interface ICarService
     {
-        IDataResult<List<Cars>> GetAll();
-        IDataResult<List<Cars>> GetAllByColorId(int id);
-        IDataResult<List<Cars>> GetByDailyPrice(decimal min, decimal max);
+        IDataResult<List<Car>> GetAll();
+        IDataResult<List<Car>> GetAllByColorId(int id);
+        IDataResult<List<Car>> GetByDailyPrice(decimal min, decimal max);
         IDataResult<List<CarDetailDTO>> GetCarDetails();
-        IResult Add(Cars car);
-        IResult Update(Cars car);
+        IResult Add(Car car);
+        IResult Update(Car car);
 
-        IDataResult<Cars> GetById(int id);
+        IDataResult<Car> GetById(int id);
     }
 }

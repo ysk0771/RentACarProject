@@ -19,7 +19,7 @@ namespace Business.Concrete
             _RentalsDal = customersDal;
         }
 
-        public IResult Add(Rentals rentals)
+        public IResult Add(Rental rentals)
         {
             var result = GetRentalsDetails().Data.SingleOrDefault(p => p.CarId == rentals.CarId);
             if (result.ReturnDate != null)
@@ -30,7 +30,7 @@ namespace Business.Concrete
             return new ErrorResult(Messages.ProductNameInvalid);
         }
 
-        public IResult Delete(Rentals rentals)
+        public IResult Delete(Rental rentals)
         {
           
                 _RentalsDal.Delete(rentals);
@@ -38,9 +38,9 @@ namespace Business.Concrete
             
         }
 
-        public IDataResult<List<Rentals>> GetAll()
+        public IDataResult<List<Rental>> GetAll()
         {
-            return new SuccessesDataResult<List<Rentals>>(_RentalsDal.GetAll(), Messages.ProductListed);
+            return new SuccessesDataResult<List<Rental>>(_RentalsDal.GetAll(), Messages.ProductListed);
         }
 
         public IDataResult<List<RentalsDetailDTO>> GetRentalsDetails()
@@ -48,7 +48,7 @@ namespace Business.Concrete
             return new SuccessesDataResult<List<RentalsDetailDTO>>(_RentalsDal.GetRentalsDetails(), Messages.ProductListed);
         }
 
-        public IResult Update(Rentals rentals)
+        public IResult Update(Rental rentals)
         {
             _RentalsDal.Update(rentals);
             return new SuccessesResult(Messages.ProductUpdate);

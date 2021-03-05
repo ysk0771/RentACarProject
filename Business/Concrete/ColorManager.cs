@@ -15,19 +15,19 @@ namespace Business.Concrete
         {
             _colorDal = colordal;
         }
-        public IResult Add(Colors color)
+        public IResult Add(Color color)
         {
             _colorDal.Add(color);
             return new SuccessesResult();
         }
 
-        public IDataResult<List<Colors>> GetAll()
+        public IDataResult<List<Color>> GetAll()
         {
             //businnes codess
-            return new SuccessesDataResult<List<Colors>>(_colorDal.GetAll()) ;
+            return new SuccessesDataResult<List<Color>>(_colorDal.GetAll()) ;
         }
 
-        public IResult Update(Colors color)
+        public IResult Update(Color color)
         {
             _colorDal.Update(color);
             return new SuccessesResult();

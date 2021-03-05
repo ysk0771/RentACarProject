@@ -1,19 +1,14 @@
 ﻿using Core.DataAccesses.EntityFramework;
 using DataAccesses.Abstract;
-using Entities;
 using Entities.Concrete;
 using Entities.DTOs;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 
 
 namespace DataAccesses.Concrete.EntityFramework
 {
-    public class EfColorDal : EfEntityRepositoryBase<Colors, CarRentContext>, IColorDal
+    public class EfColorDal : EfEntityRepositoryBase<Color, CarRentContext>, IColorDal
     {
         public List<ColorDetailDTO> GetColorDetails()
         {

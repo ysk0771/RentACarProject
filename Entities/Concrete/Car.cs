@@ -1,11 +1,8 @@
-﻿using Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Core.Entities.Abstract;
 
-namespace Entities
+namespace Entities.Concrete
 {
-    public class Cars:IEntity
+    public class Car:IEntity
     {
         public int Id { get; set; }
         public int BrandId { get; set; }

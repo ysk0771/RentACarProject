@@ -1,11 +1,9 @@
-﻿using Core;
+﻿using Core.Entities.Abstract;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Entities.DTOs
 {
-   public class RentalsDetailDTO:IDto
+    public class RentalsDetailDTO:IDto
     {
         public int Id { get; set; }
         public int CarId { get; set; }
