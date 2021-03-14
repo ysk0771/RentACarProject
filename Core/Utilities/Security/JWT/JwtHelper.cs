@@ -9,6 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 
+
 namespace Core.Utilities.Security.JWT
 {
     public class JwtHelper : ITokenHelper
@@ -34,7 +35,7 @@ namespace Core.Utilities.Security.JWT
             return new AccessToken
             {
                 Token = token,
-                Expiration = _accessTokenExpiration
+                Expiration = _accessTokenExpiration.AddMinutes(10)//10
             };
 
         }
@@ -45,8 +46,8 @@ namespace Core.Utilities.Security.JWT
             var jwt = new JwtSecurityToken(
                 issuer: tokenOptions.Issuer,
                 audience: tokenOptions.Audience,
-                expires: _accessTokenExpiration,
-                notBefore: DateTime.Now,
+                expires: _accessTokenExpiration.AddMinutes(10),
+                notBefore: DateTime.Now.AddSeconds(-5),
                 claims: SetClaims(user, operationClaims),
                 signingCredentials: signingCredentials
             );

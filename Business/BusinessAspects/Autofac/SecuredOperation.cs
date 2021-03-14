@@ -6,6 +6,9 @@ using Castle.DynamicProxy;
 using Microsoft.Extensions.DependencyInjection;
 using Core.Extensions;
 using Business.Constants;
+using System.Collections.Generic;
+using System.Text;
+using Core.Entities.Concrete;
 
 namespace Business.BusinessAspects.Autofac
 {
@@ -24,7 +27,7 @@ namespace Business.BusinessAspects.Autofac
             _httpContextAccessor = ServiceTool.ServiceProvider.GetService<IHttpContextAccessor>();
 
         }
-
+        
         protected override void OnBefore(IInvocation invocation)
         {
             var roleClaims = _httpContextAccessor.HttpContext.User.ClaimRoles();

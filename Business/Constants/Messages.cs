@@ -27,7 +27,7 @@ namespace Business.Constants
 
         public static string AuthorizationDenied = "Yetkiniz yok.";
        
-        public static string UserAlreadyExists = "Kullanıcı zaten çıktı/already exist";
+        public static string UserAlreadyExists = "Kullanıcı zaten kayıtlı/already exist";
         
         public static string PasswordError = "Şifre Hatalı";
         

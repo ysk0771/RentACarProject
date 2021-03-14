@@ -1,9 +1,12 @@
+using Core.DepandancyResolver;
 using Core.Entities.IoC;
+using Core.Extensions;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,10 +27,13 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            ServiceTool.Create(services);
+
             //services.AddSingleton<ICarService,CarManager>();//Icarservice çaðrýldýðýnýda car manager oluþturtuyoruz
             //services.AddSingleton<ICarDal, EfCarDal>();//ýcardal çaðrýldýðýnda efcardal oluþturuyor.
             //car manager kullanabilmemiz için gerekli olan diðer soyut sýnýflarý ve çaðýrmasý gereken sýnýfý belirtiyoruz
+
+
+
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -44,6 +50,7 @@ namespace WebAPI
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
+            services.AddDependencyResolvers(new ICoreModule[] { new CoreModule() });
 
         }
 
